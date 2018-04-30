@@ -1,10 +1,12 @@
 import bodyParser from 'koa-bodyparser';
+import cors from 'koa-cors';
 import Koa from 'koa';
 import logger from 'koa-logger';
 import mongoose from 'mongoose';
 import helmet from 'koa-helmet';
 import routing from './routes/';
 import { port, connexionString } from './config';
+
 
 mongoose.connect(connexionString);
 mongoose.connection.on('error', console.error);
@@ -13,6 +15,7 @@ mongoose.connection.on('error', console.error);
 const app = new Koa();
 
 app
+  .use(cors())
   .use(logger())
   .use(bodyParser())
   .use(helmet());

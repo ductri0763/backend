@@ -16,14 +16,18 @@ router.get('/', UsersControllers.find);
 // GET /api/users/id
 router.get('/:id', UsersControllers.findById);
 
-
 //
 // GET /api/users/email/password
 router.get('/:email/:password', UsersControllers.findByUser);
 
+//
+// POST /api/users
+// This route is protected, add with email and pass
+
+
 // POST /api/users
 // This route is protected, call POST /api/authenticate to get the token
-router.post('/', jwt, UsersControllers.add);
+router.post('/', UsersControllers.add);
 
 // GET /api/users/id
 // This route is protected, call POST /api/authenticate to get the token
